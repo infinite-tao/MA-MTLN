@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# 创建 nnU-Net 所需 dataset.json 文件
+# 创建代码所需 dataset.json 文件
 #
 import json
 import os
@@ -10,7 +10,7 @@ from collections import OrderedDict
 
 if __name__ == '__main__':
     # 注意修改路径
-    datadir = "/home/zhangyongtao/PycharmProjects/code/result_2/data/nnUNet_raw/Task04_cancer"
+    datadir = "/home/zhangyongtao/PycharmProjects/code/result_2/data/raw/Task04_cancer"
     json_dict = OrderedDict()
     json_dict['name'] = "Stomach"
     json_dict['description'] = "stomach cancer CT segmentation"
