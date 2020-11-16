@@ -16,7 +16,7 @@ from sklearn.preprocessing import OrdinalEncoder
 
 
 if __name__ == '__main__':
-    datadir = '/home/zhangyongtao/PycharmProjects/data/preprocessed/nnU-Net-formats'
+    datadir = '/home/zhangyongtao/PycharmProjects/data/preprocessed'
     group1_data = os.listdir(osp.join(datadir, 'Task02_Shanxi', 'imagesTr'))
     group2_data = os.listdir(osp.join(datadir, 'Task03_Shaanxi', 'imagesTr'))
     group3_data = os.listdir(osp.join(datadir, 'Task01_ChinaJapan', 'imagesTr'))
@@ -43,9 +43,9 @@ if __name__ == '__main__':
     fold_data = OrderedDict()
     result = []
     i = 0
-    for train, val in kfold.split(X=groups_data, groups=groups):
+    for train, test in kfold.split(X=groups_data, groups=groups):
         fold_data['train'] = groups_data[train]
-        fold_data['val'] = groups_data[val]
+        fold_data['test'] = groups_data[test]
         result.append(fold_data)
         result.append(fold_data.copy())
     # save_pickle(result, "./splits_final.pkl")
