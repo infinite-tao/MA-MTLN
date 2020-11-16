@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
 # 五折交叉验证的划分，生成 splits_final.pkl 文件
-# 替换掉 nnU-Net 在第一次运行训练脚本生成的那个即可使用自定义的数据划分
+# 用于五折交叉验证数据读取
 # 这里主要是用 GroupKFold 来保证同一个病人的数据只会出现一个 fold 内
 #
 import os
@@ -46,14 +46,11 @@ if __name__ == '__main__':
     for train, val in kfold.split(X=groups_data, groups=groups):
         fold_data['train'] = groups_data[train]
         fold_data['val'] = groups_data[val]
-        print(fold_data)
-        with open(str(i) + 'th_splits_final.pkl', 'wb') as f:
-            pickle.dump(fold_data, f)
-            i = i + 1
-    #     result.append(fold_data)
+        result.append(fold_data)
+        result.append(fold_data.copy())
     # save_pickle(result, "./splits_final.pkl")
-    # with open('splits_final.pkl', 'wb') as f:
-    #     pickle.dump(fold_data, f)
-    #     print(result)
+    with open('splits_final.pkl', 'wb') as f:
+        pickle.dump(fold_data, f)
+        print(result)
 
 
